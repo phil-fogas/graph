@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="fr-FR">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8">  
+<title>graphique</title>
+
+  <link rel="stylesheet" href="css/normalize.min.css">
+
+</head>
+
+<body >
+  <div >
+<article >
+<h1>statistique </h1>
+<h2> en colonnes "col"</h2>
+<?php 
+
+$graf->setAutodVal(false)->Graph('col',$data1, 'semaine 1');
+
+?>
+<br/>
+<h2> en camenbert "pie"</h2>
+<?php 
+
+$graf->Rz()->Graph('pie',$data2, 'semaine 2');
+
+?>
+<br/>
+<h2> en barre "bar"</h2>
+<?php 
+
+$graf->setLegend(0)->setCouleur('255.255.255')->Graph('bar',$data3, 'semaine 3');
+
+?>
+<br/>
+
+</article>
+
+</div>
+</body>
+</html>
