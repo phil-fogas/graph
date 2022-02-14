@@ -7,80 +7,80 @@
 class Graph
 {
   /**
-  * @var string
-  */
+   * @var string
+   */
   protected $type;
 
- /**
-  * @var string
-  */
-  protected $title='graphique';
-  
   /**
-   * @var int
+   * @var string
    */
-  protected $width=600;
+  protected $title = 'graphique';
 
   /**
    * @var int
    */
-  protected $height=400;
+  protected $width = 600;
 
   /**
    * @var int
    */
-  protected $widthLegend=200;
+  protected $height = 400;
+
+  /**
+   * @var int
+   */
+  protected $widthLegend = 200;
 
 
   /**
    * @var bool
    */
-  protected $legend=true;
-  
-  /**
-   * @var bool
-   */
-  protected $legendVal=true;
+  protected $legend = true;
 
   /**
    * @var bool
    */
-  protected $autodVal=true;
+  protected $legendVal = true;
+
+  /**
+   * @var bool
+   */
+  protected $autodVal = true;
 
   /**
    * @var string
    */
-  protected $chemin='graph';
-  
-   /**
+  protected $chemin = 'graph';
+
+  /**
    * @var string
    */
-  protected $couleur='0.0.0'; 
+  protected $couleur = '0.0.0';
 
   /**
    * @var int
    */
-  protected $marge=20;
- 
- /**
+  protected $marge = 20;
+
+  /**
    * @var int
    */
-  protected $margeX=20;
- /**
+  protected $margeX = 20;
+  /**
    * @var int
    */
-  protected $margeY=20;
-  
-   /**
+  protected $margeY = 20;
+
+  /**
    * @var bool
    */
-  protected $sav=false;
+  protected $sav = false;
 
   /**
    * Get the value of marge
    *
    * @return  int
-   */ 
+   */
   public function getMarge()
   {
     return $this->marge;
@@ -92,7 +92,7 @@ class Graph
    * @param  int  $marge
    *
    * @return  self
-   */ 
+   */
   public function setMarge(int $marge)
   {
     $this->marge = $marge;
@@ -103,7 +103,7 @@ class Graph
   /**
    * Get the value of legend
    * @return bool
-   */ 
+   */
   public function getLegend()
   {
     return $this->legend;
@@ -113,7 +113,7 @@ class Graph
    * Set the value of legend
    *@param  bool  $legend
    * @return  self
-   */ 
+   */
   public function setLegend(bool $legend)
   {
     $this->legend = $legend;
@@ -123,7 +123,7 @@ class Graph
   /**
    * Get the value of sav
    * @return bool
-   */ 
+   */
   public function getSav()
   {
     return $this->sav;
@@ -133,7 +133,7 @@ class Graph
    * Set the value of sav
    *@param  bool  $sav
    * @return  self
-   */ 
+   */
   public function setSav(bool $sav)
   {
     $this->sav = $sav;
@@ -144,7 +144,7 @@ class Graph
    * Get the value of width
    *
    * @return  int
-   */ 
+   */
   public function getWidth()
   {
     return $this->width;
@@ -156,12 +156,18 @@ class Graph
    * @param  int  $width
    *
    * @return  self
-   */ 
+   */
   public function setWidth(int $width)
   {
-    if($width<=100){$width=200;}
-    if(empty($width)&&!empty($this->height)){$width=$this->height;}
-    if(empty($this->height)){$this->height=$width/1.5;}
+    if ($width <= 100) {
+      $width = 200;
+    }
+    if (empty($width) && !empty($this->height)) {
+      $width = $this->height;
+    }
+    if (empty($this->height)) {
+      $this->height = $width / 1.5;
+    }
     $this->width = $width;
 
     return $this;
@@ -171,7 +177,7 @@ class Graph
    * Get the value of height
    *
    * @return  int
-   */ 
+   */
   public function getHeight()
   {
     return $this->height;
@@ -183,12 +189,18 @@ class Graph
    * @param  int  $height
    *
    * @return  self
-   */ 
+   */
   public function setHeight(int $height)
   {
-    if($height<=100){$height=200;}
-    if(empty($height)&&!empty($this->width)){$height=$this->width;}
-    if(empty($this->width)){$this->width=$height*1.5;}
+    if ($height <= 100) {
+      $height = 200;
+    }
+    if (empty($height) && !empty($this->width)) {
+      $height = $this->width;
+    }
+    if (empty($this->width)) {
+      $this->width = $height * 1.5;
+    }
     $this->height = $height;
 
     return $this;
@@ -198,7 +210,7 @@ class Graph
    * Get the value of legendVal
    *
    * @return  bool
-   */ 
+   */
   public function getLegendVal()
   {
     return $this->legendVal;
@@ -210,7 +222,7 @@ class Graph
    * @param  bool  $legendVal
    *
    * @return  self
-   */ 
+   */
   public function setLegendVal(bool $legendVal)
   {
     $this->legendVal = $legendVal;
@@ -222,7 +234,7 @@ class Graph
    * Get the value of type
    *
    * @return  string
-   */ 
+   */
   public function getType()
   {
     return $this->type;
@@ -234,12 +246,14 @@ class Graph
    * @param  string  $type
    *
    * @return  self
-   */ 
+   */
   public function setType(string $type)
   {
-    $typ=['col','bar','pie'];
-   
-    if(!in_array($type,$typ)){$type='col';}
+    $typ = ['col', 'bar', 'pie'];
+
+    if (!in_array($type, $typ)) {
+      $type = 'col';
+    }
     $this->type = $type;
 
     return $this;
@@ -249,7 +263,7 @@ class Graph
    * Get the value of margeX
    *
    * @return  int
-   */ 
+   */
   public function getMargeX()
   {
     return $this->margeX;
@@ -261,10 +275,12 @@ class Graph
    * @param  int  $margeX
    *
    * @return  self
-   */ 
+   */
   public function setMargeX(int $margeX)
   {
-    if(!empty($margeX)){$margeX=$this->marge;}
+    if (!empty($margeX)) {
+      $margeX = $this->marge;
+    }
     $this->margeX = $margeX;
 
     return $this;
@@ -274,7 +290,7 @@ class Graph
    * Get the value of margeY
    *
    * @return  int
-   */ 
+   */
   public function getMargeY()
   {
     return $this->margeY;
@@ -286,20 +302,22 @@ class Graph
    * @param  int  $margeY
    *
    * @return  self
-   */ 
+   */
   public function setMargeY(int $margeY)
   {
-    if(!empty($margeY)){$margeY=$this->marge;}
+    if (!empty($margeY)) {
+      $margeY = $this->marge;
+    }
     $this->margeY = $margeY;
 
     return $this;
   }
 
-    /**
+  /**
    * Get the value of widthLegend
    *
    * @return  int
-   */ 
+   */
   public function getWidthLegend()
   {
     return $this->widthLegend;
@@ -311,10 +329,12 @@ class Graph
    * @param  int  $widthLegend
    *
    * @return  self
-   */ 
+   */
   public function setWidthLegend(int $widthLegend)
   {
-    if(empty($widthLegend)){ $widthLegend=200; }
+    if (empty($widthLegend)) {
+      $widthLegend = 200;
+    }
     $this->widthLegend = $widthLegend;
 
     return $this;
@@ -323,7 +343,7 @@ class Graph
    * Get the value of autodVal
    *
    * @return  bool
-   */ 
+   */
   public function getAutodVal()
   {
     return $this->autodVal;
@@ -335,7 +355,7 @@ class Graph
    * @param  bool  $autodVal
    *
    * @return  self
-   */ 
+   */
   public function setAutodVal(bool $autodVal)
   {
     $this->autodVal = $autodVal;
@@ -347,7 +367,7 @@ class Graph
    * Get the value of chemin
    *
    * @return  string
-   */ 
+   */
   public function getChemin()
   {
     return $this->chemin;
@@ -359,7 +379,7 @@ class Graph
    * @param  string  $chemin
    *
    * @return  self
-   */ 
+   */
   public function setChemin(string $chemin)
   {
     $this->chemin = $chemin;
@@ -371,7 +391,7 @@ class Graph
    * Get the value of couleur
    *
    * @return  string
-   */ 
+   */
   public function getCouleur()
   {
     return $this->couleur;
@@ -383,7 +403,7 @@ class Graph
    * @param  string  $couleur
    *
    * @return  self
-   */ 
+   */
   public function setCouleur(string $couleur)
   {
     $this->couleur = $couleur;
@@ -393,592 +413,577 @@ class Graph
 
   public function __construct()
   {
-    
   }
 
   private function somme(array $data): float
   {
     $somme = 0;
-    
-    for($t=0;$t<count($data);$t++) {
-        $somme += $data[$t];
+
+    for ($t = 0; $t < count($data); $t++) {
+      $somme += $data[$t];
     }
     return $somme;
   }
 
   private function valeur(array $data): array
   {
-    foreach($data as $id=>$k){
+    foreach ($data as $id => $k) {
       //echo $k.' '.$id;
-      if(!is_numeric($k)){
-        $datanum[]=$k;
-      }else{
-        $datanum[]=floatval($k);
+      if (!is_numeric($k)) {
+        $datanum[] = $k;
+      } else {
+        $datanum[] = floatval($k);
       }
-      if(empty($datanum)&&is_numeric($id)&&empty($k)){
-        $datanum[]=floatval($id);
+      if (empty($datanum) && is_numeric($id) && empty($k)) {
+        $datanum[] = floatval($id);
       }
-      if(is_numeric($id)){
-        $datalab[]=floatval($id);
+      if (is_numeric($id)) {
+        $datalab[] = floatval($id);
       }
     }
-    
-  return $datanum;
+
+    return $datanum;
   }
 
   private function label(array $data): array
   {
-   
-    foreach($data as $id=>$k){
- 
-      if(!is_numeric($id)){
-        $datalab[]=$id;
-      }else {
-        $datalab[]=floatval($id);
+
+    foreach ($data as $id => $k) {
+
+      if (!is_numeric($id)) {
+        $datalab[] = $id;
+      } else {
+        $datalab[] = floatval($id);
       }
     }
-  return $datalab;
+    return $datalab;
   }
 
   private function pourcent(array $data): array
-{
-  $somme=$this->somme($data);
-  
-  for($p=0;$p<count($data);$p++) {
- 
-        $value[] =(float) ($data[$p] * 100) / $somme;
-    
+  {
+    $somme = $this->somme($data);
+
+    for ($p = 0; $p < count($data); $p++) {
+
+      $value[] = (float) ($data[$p] * 100) / $somme;
+    }
+
+    return $value;
   }
 
-  return $value ;
-}
+  private function pcouleur($Graf): array
+  {
+    $Color['Red'] = array(170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238);
+    $Color['Green'] = array(120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146);
+    $Color['Blue'] = array(70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98);
+    list($r, $g, $b) = explode(".", $this->couleur);
+    list($fr, $fg, $fb) = explode(".", $this->fond);
+    $t = 55;
+    for ($c = 0; $c < count($Color['Red']); $c++) {
 
-private function pcouleur($Graf): array
-{
-  $Color['Red'] = array(170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238);
-  $Color['Green'] = array(120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146);
-  $Color['Blue'] = array(70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98);
-  list($r, $g, $b) = explode(".", $this->couleur);
-  list($fr, $fg, $fb) = explode(".", $this->fond);
-  $t=55;
-  for($c=0;$c<count($Color['Red']);$c++) {
-   
-    if($Color['Red'][$c]==$r&&$Color['Green'][$c]==$g&&$Color['Blue'][$c]==$b){
-      $Couleur[$c] = imagecolorallocate($Graf, (int)fmod($Color['Red'][$c]+$t,255),(int)fmod($Color['Green'][$c]+$t,255), (int)fmod($Color['Blue'][$c]+$t,255));
-    } elseif ($Color['Red'][$c]==$fr&&$Color['Green'][$c]==$fg&&$Color['Blue'][$c]==$fb){
-      $Couleur[$c] = imagecolorallocate($Graf, (int)fmod($Color['Red'][$c]-$t,255),(int)fmod($Color['Green'][$c]-$t,255), (int)fmod($Color['Blue'][$c]-$t,255));
-    } else {
-      $Couleur[$c] = imagecolorallocate($Graf, $Color['Red'][$c],$Color['Green'][$c], $Color['Blue'][$c]); 
+      if ($Color['Red'][$c] == $r && $Color['Green'][$c] == $g && $Color['Blue'][$c] == $b) {
+        $Couleur[$c] = imagecolorallocate($Graf, (int)fmod($Color['Red'][$c] + $t, 255), (int)fmod($Color['Green'][$c] + $t, 255), (int)fmod($Color['Blue'][$c] + $t, 255));
+      } elseif ($Color['Red'][$c] == $fr && $Color['Green'][$c] == $fg && $Color['Blue'][$c] == $fb) {
+        $Couleur[$c] = imagecolorallocate($Graf, (int)fmod($Color['Red'][$c] - $t, 255), (int)fmod($Color['Green'][$c] - $t, 255), (int)fmod($Color['Blue'][$c] - $t, 255));
+      } else {
+        $Couleur[$c] = imagecolorallocate($Graf, $Color['Red'][$c], $Color['Green'][$c], $Color['Blue'][$c]);
+      }
     }
-   }
-  return $Couleur;
-}
-
-private function pcouleurAlfa($Graf,int $t=55): array
-{
-  if($t>=127){$t=fmod($t, 127);}
-  $Color['Red'] = array(170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238);
-  $Color['Green'] = array(120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146);
-  $Color['Blue'] = array(70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98);
-  list($r, $g, $b) = explode(".", $this->couleur);
-  list($fr, $fg, $fb) = explode(".", $this->fond);
-  
-  for($c=0;$c<count($Color['Red']);$c++) {
-   
-    
-    if($Color['Red'][$c]==$r&&$Color['Green'][$c]==$g&&$Color['Blue'][$c]==$b){
-      $Couleur[$c] = imagecolorallocatealpha($Graf, (int)fmod($Color['Red'][$c]+$t,255),(int)fmod($Color['Green'][$c]+$t,255), (int)fmod($Color['Blue'][$c]+$t,255),$t);
-    } elseif($Color['Red'][$c]==$fr&&$Color['Green'][$c]==$fg&&$Color['Blue'][$c]==$fb){
-      $Couleur[$c] = imagecolorallocatealpha($Graf, (int)fmod($Color['Red'][$c]-$t,255),(int)fmod($Color['Green'][$c]-$t,255), (int)fmod($Color['Blue'][$c]-$t,255),$t);
-    } else {
-      $Couleur[$c] = imagecolorallocatealpha($Graf, $Color['Red'][$c],$Color['Green'][$c], $Color['Blue'][$c],$t);
-    }
+    return $Couleur;
   }
-  return $Couleur;
-}
 
-private function pie($Graf,$value,$Couleur)
-{   $d=1;
-  $width=$this->width;
-  $height=$this->height;
-  $margex=$this->margeX;
-  $margey=$this->margeY;
-  
-  $CPortion=$this->pcouleur($Graf);
-     // Fond de l'image
-     $Grafi=imagefilledrectangle($Graf, 0, 0, $width-$d, $height-$d, $Couleur['fond']);
+  private function pcouleurAlfa($Graf, int $t = 55): array
+  {
+    if ($t >= 127) {
+      $t = fmod($t, 127);
+    }
+    $Color['Red'] = array(170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238);
+    $Color['Green'] = array(120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146);
+    $Color['Blue'] = array(70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98);
+    list($r, $g, $b) = explode(".", $this->couleur);
+    list($fr, $fg, $fb) = explode(".", $this->fond);
 
-     // Dessine le contour du camembert
-     
-     imagefilledellipse($Graf,(int) ($width / 2),(int) ($height / 2+$d*3),(int) ($width - $margex + $d*15),(int) ($height/1.2 - $margey + $d*15), $Couleur['ecriture']);
-  
-     // Dessin des portions
-     $start = 0;
- 
-     $colorid = 0;
-     for($v=0;$v<count($value);$v++) {
-         if($colorid==count($CPortion)) {
-             $colorid = 0;
-         } else {
-             $colorid++;
-         }
-        
-         $end = (int) round($start + (($value[$v] * 360) / 100));
+    for ($c = 0; $c < count($Color['Red']); $c++) {
 
-         imagefilledarc($Graf,(int) (($width / 2)+2),(int) (($height / 2)+4),(int) (($width - $margex)+$d*8),(int) (($height/1.2 - $margey)+$d*10),(int) $start,(int) $end,$this->pcouleurAlfa($Graf,55)[$colorid],IMG_ARC_PIE);
-         imagefilledarc($Graf,(int) ($width / 2),(int) ($height / 2),(int) ($width - $margex)-$d-8,(int) ($height/1.2 - $margey)-$d-8,(int) $start,(int) $end, $this->pcouleur($Graf)[$colorid],IMG_ARC_PIE);
-        
-         $start = $end;
-     }
-     $Grafi= imagecreatetruecolor($width, $height);
-// Copie de l'image Graphique temporaire
-imagecopyresized($Grafi, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
-// Libération de la mémoire
-imagedestroy($Grafi);
- 
-         return $Grafi;
-}
 
-private function bar($Graf,$value,$Couleur)
-{
-     // Fond de l'image
-     $width=$this->width;
-     $height=$this->height;
-     $margex=$this->margeX;
-     $margey=$this->margeY;
-     $d=1;
-     $CPortion=$this->pcouleur($Graf);
-     $Grafi=imagefilledrectangle($Graf, 0, 0, $width-3, $height-3, $Couleur['fond']);
-     imagesetthickness($Graf, 3);
-     imageline($Graf, $width-2, 0, $width-2,$height,  $Couleur['ecriture']);
-     imageline($Graf, 0, $height-2, $width-2,$height-2,  $Couleur['ecriture']);
-     //imagerectangle($Graf, 0, 0, $width-3, $height-3, $Couleur['ecriture-']);
-     // Dessin des portions
-    
-     imagesetthickness($Graf, $d); 
-     // Dessin des portions
+      if ($Color['Red'][$c] == $r && $Color['Green'][$c] == $g && $Color['Blue'][$c] == $b) {
+        $Couleur[$c] = imagecolorallocatealpha($Graf, (int)fmod($Color['Red'][$c] + $t, 255), (int)fmod($Color['Green'][$c] + $t, 255), (int)fmod($Color['Blue'][$c] + $t, 255), $t);
+      } elseif ($Color['Red'][$c] == $fr && $Color['Green'][$c] == $fg && $Color['Blue'][$c] == $fb) {
+        $Couleur[$c] = imagecolorallocatealpha($Graf, (int)fmod($Color['Red'][$c] - $t, 255), (int)fmod($Color['Green'][$c] - $t, 255), (int)fmod($Color['Blue'][$c] - $t, 255), $t);
+      } else {
+        $Couleur[$c] = imagecolorallocatealpha($Graf, $Color['Red'][$c], $Color['Green'][$c], $Color['Blue'][$c], $t);
+      }
+    }
+    return $Couleur;
+  }
 
-    $max=max($value);
-    $colonne=count($value);
-    $padcolumn=10;
-     $columnheight = ($height / 100) * (($d/$colonne)*100) ;
-    $padbottom=30;
-  
-     $colorid = 0;
+  private function pie($Graf, $value, $Couleur)
+  {
+    $d = 1;
+    $width = $this->width;
+    $height = $this->height;
+    $margex = $this->margeX;
+    $margey = $this->margeY;
 
-     for($i=0;$i<$max;$i++){
-      
+    $CPortion = $this->pcouleur($Graf);
+    // Fond de l'image
+    $Grafi = imagefilledrectangle($Graf, 0, 0, $width - $d, $height - $d, $Couleur['fond']);
+
+    // Dessine le contour du camembert
+
+    imagefilledellipse($Graf, (int) ($width / 2), (int) ($height / 2 + $d * 3), (int) ($width - $margex + $d * 15), (int) ($height / 1.2 - $margey + $d * 15), $Couleur['ecriture']);
+
+    // Dessin des portions
+    $start = 0;
+
+    $colorid = 0;
+    for ($v = 0; $v < count($value); $v++) {
+      if ($colorid == count($CPortion)) {
+        $colorid = 0;
+      } else {
+        $colorid++;
+      }
+
+      $end = (int) round($start + (($value[$v] * 360) / 100));
+
+      imagefilledarc($Graf, (int) (($width / 2) + 2), (int) (($height / 2) + 4), (int) (($width - $margex) + $d * 8), (int) (($height / 1.2 - $margey) + $d * 10), (int) $start, (int) $end, $this->pcouleurAlfa($Graf, 55)[$colorid], IMG_ARC_PIE);
+      imagefilledarc($Graf, (int) ($width / 2), (int) ($height / 2), (int) ($width - $margex) - $d - 8, (int) ($height / 1.2 - $margey) - $d - 8, (int) $start, (int) $end, $this->pcouleur($Graf)[$colorid], IMG_ARC_PIE);
+
+      $start = $end;
+    }
+    $Grafi = imagecreatetruecolor($width, $height);
+    // Copie de l'image Graphique temporaire
+    imagecopyresized($Grafi, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
+    // Libération de la mémoire
+    imagedestroy($Grafi);
+
+    return $Grafi;
+  }
+
+  private function bar($Graf, $value, $Couleur)
+  {
+    // Fond de l'image
+    $width = $this->width;
+    $height = $this->height;
+    $margex = $this->margeX;
+    $margey = $this->margeY;
+    $d = 1;
+    $CPortion = $this->pcouleur($Graf);
+    $Grafi = imagefilledrectangle($Graf, 0, 0, $width - 3, $height - 3, $Couleur['fond']);
+    imagesetthickness($Graf, 3);
+    imageline($Graf, $width - 2, 0, $width - 2, $height,  $Couleur['ecriture']);
+    imageline($Graf, 0, $height - 2, $width - 2, $height - 2,  $Couleur['ecriture']);
+    //imagerectangle($Graf, 0, 0, $width-3, $height-3, $Couleur['ecriture-']);
+    // Dessin des portions
+
+    imagesetthickness($Graf, $d);
+    // Dessin des portions
+
+    $max = max($value);
+    $colonne = count($value);
+    $padcolumn = 10;
+    $columnheight = ($height / 100) * (($d / $colonne) * 100);
+    $padbottom = 30;
+
+    $colorid = 0;
+
+    for ($i = 0; $i < $max; $i++) {
+
       $y1 = 0;
-      $x1 = $i*$padbottom-$padbottom*2;
+      $x1 = $i * $padbottom - $padbottom * 2;
       $y2 = $height;
-      $x2 = $i*$padbottom-$padbottom*2;
-       imageline($Graf, $x1, $y1, $x2, $y2, $Couleur['ecriture-']);
-     }
-
-     for($i=0;$i<$colonne;$i++) {
-         if($colorid==$colonne) {
-             $colorid = 0;
-         } else {
-             $colorid++;
-         }
-      
-        $columnwidth  = ($width / 100) * (( $value[$i] / $max) *100);
-        $x1=$padcolumn;
-        $y1=$i*$columnheight+$padcolumn/2;
-        $x2=$columnwidth-$padcolumn;
-        $y2=(($i+1)*$columnheight)-$padbottom+$padcolumn/2;
-        imagefilledrectangle($Graf,(int)$x1-$d,(int)$y1-$d*5,(int)$x2+($d*5),(int)$y2+($d),$Couleur['ecriture']);
-        imagefilledrectangle($Graf,(int)$x1-$d,(int)$y1-$d*4,(int)$x2+($d*4),(int)$y2+($d),$this->pcouleurAlfa($Graf,55)[$colorid]);
-        imagefilledrectangle($Graf,(int)$x1-($d),(int)$y1+($d),(int)$x2-($d),(int)$y2-($d),$this->pcouleur($Graf)[$colorid]);
-       
-     }
-     $Grafi= imagecreatetruecolor($width, $height);
-// Copie de l'image Graphique temporaire
-imagecopyresized($Grafi, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
-// Libération de la mémoire
-imagedestroy($Grafi);
-         return $Grafi;
-}
-
-private function col($Graf,$value, $Couleur)
-{
-     
-  $width=$this->width;
-  $height=$this->height;
-  $margex=$this->margeX;
-  $margey=$this->margeY;
-  
-  //$CPortion=$this->pcouleur($Graf);
-  // Fond de l'image
-      $padcolumn=10;
-     
-        $padbottom=30;
-      $d=1;  
-     $Grafi=imagefilledrectangle($Graf, 0, 0, $width, $height, $Couleur['fond']);
-     imagesetthickness($Graf, 3);
-     imageline($Graf, $width-2, 0, $width-2,$height,  $Couleur['ecriture']);
-     imageline($Graf, 0, $height-2, $width-2,$height-2,  $Couleur['ecriture']);
-     //imagerectangle($Graf, 0, 0, $width-3, $height-3, $Couleur['ecriture-']);
-     // Dessin des portions
-    
-     imagesetthickness($Graf, $d); 
-    $max=max($value);
-    $colonne=count($value);
-     $columnwidth = ($width / 100) * (($d/$colonne)*100) ;
-   
-     $colorid = 0;
-
-     for($i=0;$i<$max;$i++){
-      
-      $x1 = 0;
-      $y1 = $i*$padbottom-$padbottom*2;
-      $x2 = $width;
-      $y2 = $i*$padbottom-$padbottom*2;
+      $x2 = $i * $padbottom - $padbottom * 2;
       imageline($Graf, $x1, $y1, $x2, $y2, $Couleur['ecriture-']);
-     }
+    }
 
-     for($i=0;$i<$colonne;$i++) {
-         if($colorid==$colonne) {
-             $colorid = 0;
-         } else {
-             $colorid++;
-         }
-        
+    for ($i = 0; $i < $colonne; $i++) {
+      if ($colorid == $colonne) {
+        $colorid = 0;
+      } else {
+        $colorid++;
+      }
 
-         $columnheight = ($height / 100) * (( $value[$i] / $max) *100);
-         $x1 = $i*$columnwidth+$padcolumn/2;
-         $y1 = ($height)-$columnheight+$padcolumn;
-         $x2 = (($i+1)*$columnwidth)-$padbottom/2;
-         $y2 = $height-$padcolumn*1.5;
-         
-         imagefilledrectangle($Graf,(int)$x1-$d,(int)$y1-$d*5,(int)$x2+($d*5),(int)$y2+($d),$Couleur['ecriture']);
-         imagefilledrectangle($Graf,(int)$x1-$d,(int)$y1-$d*4,(int)$x2+($d*4),(int)$y2+($d),$this->pcouleurAlfa($Graf,55)[$colorid]);
-         imagefilledrectangle($Graf,(int)$x1-($d),(int)$y1+($d),(int)$x2-($d),(int)$y2-($d),$this->pcouleur($Graf)[$colorid]);
-         
-     }
-     $Grafi= imagecreatetruecolor($width, $height);
-// Copie de l'image Graphique temporaire
-imagecopyresized($Grafi, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
-// Libération de la mémoire
-imagedestroy($Grafi);
-         return $Grafi;
-}
+      $columnwidth  = ($width / 100) * (($value[$i] / $max) * 100);
+      $x1 = $padcolumn;
+      $y1 = $i * $columnheight + $padcolumn / 2;
+      $x2 = $columnwidth - $padcolumn;
+      $y2 = (($i + 1) * $columnheight) - $padbottom + $padcolumn / 2;
+      imagefilledrectangle($Graf, (int)$x1 - $d, (int)$y1 - $d * 5, (int)$x2 + ($d * 5), (int)$y2 + ($d), $Couleur['ecriture']);
+      imagefilledrectangle($Graf, (int)$x1 - $d, (int)$y1 - $d * 4, (int)$x2 + ($d * 4), (int)$y2 + ($d), $this->pcouleurAlfa($Graf, 55)[$colorid]);
+      imagefilledrectangle($Graf, (int)$x1 - ($d), (int)$y1 + ($d), (int)$x2 - ($d), (int)$y2 - ($d), $this->pcouleur($Graf)[$colorid]);
+    }
+    $Grafi = imagecreatetruecolor($width, $height);
+    // Copie de l'image Graphique temporaire
+    imagecopyresized($Grafi, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
+    // Libération de la mémoire
+    imagedestroy($Grafi);
+    return $Grafi;
+  }
 
-private function lengend(array $datalab,array $value, $Graf,$Couleur,$Font)
-{
-// Creation de la ressource
-$width=$this->width;
-$height=$this->height;
-$margex=$this->margeX;
-$margey=$this->margeY;
-$widthlegend=$this->widthLegend;
-$title=$this->title;
-$legend = imagecreatetruecolor($widthlegend, $height);
+  private function col($Graf, $value, $Couleur)
+  {
 
-// Couleur du fond
-imagefilledrectangle($legend, 0, 0, $widthlegend, $height, $Couleur['fond']);
+    $width = $this->width;
+    $height = $this->height;
+    $margex = $this->margeX;
+    $margey = $this->margeY;
 
-// Place une marge en haut
-$yActual =intval($margey*1.5) ;
+    //$CPortion=$this->pcouleur($Graf);
+    // Fond de l'image
+    $padcolumn = 10;
 
-// Si on a un titre
-if(!empty($title)||$title!='graph') 
-{
-    // Taille maxi du titre
-    $FontSize = 18;
-    $GoodSize = false;
+    $padbottom = 30;
+    $d = 1;
+    $Grafi = imagefilledrectangle($Graf, 0, 0, $width, $height, $Couleur['fond']);
+    imagesetthickness($Graf, 3);
+    imageline($Graf, $width - 2, 0, $width - 2, $height,  $Couleur['ecriture']);
+    imageline($Graf, 0, $height - 2, $width - 2, $height - 2,  $Couleur['ecriture']);
+    //imagerectangle($Graf, 0, 0, $width-3, $height-3, $Couleur['ecriture-']);
+    // Dessin des portions
 
-    // Tant que le titre ne rentre pas
-    while(!$GoodSize) {
+    imagesetthickness($Graf, $d);
+    $max = max($value);
+    $colonne = count($value);
+    $columnwidth = ($width / 100) * (($d / $colonne) * 100);
+
+    $colorid = 0;
+
+    for ($i = 0; $i < $max; $i++) {
+
+      $x1 = 0;
+      $y1 = $i * $padbottom - $padbottom * 2;
+      $x2 = $width;
+      $y2 = $i * $padbottom - $padbottom * 2;
+      imageline($Graf, $x1, $y1, $x2, $y2, $Couleur['ecriture-']);
+    }
+
+    for ($i = 0; $i < $colonne; $i++) {
+      if ($colorid == $colonne) {
+        $colorid = 0;
+      } else {
+        $colorid++;
+      }
+
+
+      $columnheight = ($height / 100) * (($value[$i] / $max) * 100);
+      $x1 = $i * $columnwidth + $padcolumn / 2;
+      $y1 = ($height) - $columnheight + $padcolumn;
+      $x2 = (($i + 1) * $columnwidth) - $padbottom / 2;
+      $y2 = $height - $padcolumn * 1.5;
+
+      imagefilledrectangle($Graf, (int)$x1 - $d, (int)$y1 - $d * 5, (int)$x2 + ($d * 5), (int)$y2 + ($d), $Couleur['ecriture']);
+      imagefilledrectangle($Graf, (int)$x1 - $d, (int)$y1 - $d * 4, (int)$x2 + ($d * 4), (int)$y2 + ($d), $this->pcouleurAlfa($Graf, 55)[$colorid]);
+      imagefilledrectangle($Graf, (int)$x1 - ($d), (int)$y1 + ($d), (int)$x2 - ($d), (int)$y2 - ($d), $this->pcouleur($Graf)[$colorid]);
+    }
+    $Grafi = imagecreatetruecolor($width, $height);
+    // Copie de l'image Graphique temporaire
+    imagecopyresized($Grafi, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
+    // Libération de la mémoire
+    imagedestroy($Grafi);
+    return $Grafi;
+  }
+
+  private function lengend(array $datalab, array $value, $Graf, $Couleur, $Font)
+  {
+    // Creation de la ressource
+    $width = $this->width;
+    $height = $this->height;
+    $margex = $this->margeX;
+    $margey = $this->margeY;
+    $widthlegend = $this->widthLegend;
+    $title = $this->title;
+    $legend = imagecreatetruecolor($widthlegend, $height);
+
+    // Couleur du fond
+    imagefilledrectangle($legend, 0, 0, $widthlegend, $height, $Couleur['fond']);
+
+    // Place une marge en haut
+    $yActual = intval($margey * 1.5);
+
+    // Si on a un titre
+    if (!empty($title) || $title != 'graph') {
+      // Taille maxi du titre
+      $FontSize = 18;
+      $GoodSize = false;
+
+      // Tant que le titre ne rentre pas
+      while (!$GoodSize) {
         // Calcul de la largeur du titre
-        $TitleBox = imagettfbbox($FontSize, 0, $Font['fontotf'],$title);
+        $TitleBox = imagettfbbox($FontSize, 0, $Font['fontotf'], $title);
         $TitleWidth = $TitleBox[0] + $TitleBox[2];
         $TitleHeight = $TitleBox[1] + $TitleBox[3];
-        
+
         // Si le titre rentre dans la boite
-        if($TitleWidth<=($widthlegend - 20)) {
-            $GoodSize = true;
+        if ($TitleWidth <= ($widthlegend - 20)) {
+          $GoodSize = true;
         } else {
-            // Sinon on reduit la taille de la police
-            $FontSize--;
+          // Sinon on reduit la taille de la police
+          $FontSize--;
         }
+      }
+
+      // Centrage du titre
+      $xActual = ($widthlegend - $TitleWidth) / 2;
+
+      imagettftext($legend, (int)$FontSize, 0, (int)$xActual, (int)$yActual, (int)$Couleur['ecriture'], $Font['fontotf'], $title);
+
+      // Saut de ligne sous le titre
+      $yActual += 20;
     }
 
-    // Centrage du titre
-    $xActual = ($widthlegend - $TitleWidth) / 2;
-   
-    imagettftext($legend, (int)$FontSize, 0, (int)$xActual, (int)$yActual, (int)$Couleur['ecriture'], $Font['fontotf'], $title);
+    $Blocheight = 20;
+    $Blocsaut = 10;
+    $GoodBlocHeight = false;
 
-    // Saut de ligne sous le titre
-    $yActual += 20;    
-}
-
-$Blocheight = 20;
-$Blocsaut = 10;
-$GoodBlocHeight = false;
-
-$maxheight = $height - $yActual - $margey;
-while(!$GoodBlocHeight) {
-    $TotalHeight = ($Blocheight + $Blocsaut) * count($datalab);
-    if($TotalHeight>$maxheight) {
+    $maxheight = $height - $yActual - $margey;
+    while (!$GoodBlocHeight) {
+      $TotalHeight = ($Blocheight + $Blocsaut) * count($datalab);
+      if ($TotalHeight > $maxheight) {
         $Blocheight--;
         $Blocsaut--;
-    } else {
-        $GoodBlocHeight = true;
-    }
-}
-
-// Dessin et texte des legendes
-for($k=0;$k<count($datalab);$k++) {
-  
-  
-  if($this->type=='col'||$this->type=='bar'){
-  imagefilledrectangle($legend, 20, $yActual-4, 50+4, $yActual + $Blocheight, $Couleur['ecriture']);
-  imagefilledrectangle($legend, 20, $yActual-3, 50+3, $yActual + $Blocheight, $this->pcouleurAlfa($Graf,55)[$k+1]);
-  imagefilledrectangle($legend, 20+1, $yActual, 50, $yActual + $Blocheight-1, $this->pcouleur($Graf)[$k+1]);
-  }
-
-  if($this->type=='pie'){
-  imagefilledarc($legend, 5+$Blocheight-1,5+$yActual-1,50+10,50+10, 0, (360/6), $Couleur['ecriture'],IMG_ARC_PIE);
-  imagefilledarc($legend, 5+$Blocheight+3,5+$yActual,50,50, 0, (360/6), $this->pcouleurAlfa($Graf,55)[$k+1],IMG_ARC_PIE);   
-  imagefilledarc($legend, 5+$Blocheight+1,5+$yActual,50-2,50-2, 0, (360/6), $this->pcouleur($Graf)[$k+1],IMG_ARC_PIE); 
-  }
-
-    if($this->legendVal) {
-      if($this->autodVal){
-       $legendvaleur = $datalab[$k].' '.round($value[$k], 2).'%'; 
       } else {
-        $legendvaleur = $datalab[$k].' '.round($value[$k], 2).' ';  
+        $GoodBlocHeight = true;
       }
-        
-    } else {
-        $legendvaleur = $datalab[$k];
     }
-    
-    $LegendFontSize = 13;
-    $LegendGoodSize = false;
 
-    // Tant que la legende ne rentre pas
-    while(!$LegendGoodSize) {
+    // Dessin et texte des legendes
+    for ($k = 0; $k < count($datalab); $k++) {
+
+
+      if ($this->type == 'col' || $this->type == 'bar') {
+        imagefilledrectangle($legend, 20, $yActual - 4, 50 + 4, $yActual + $Blocheight, $Couleur['ecriture']);
+        imagefilledrectangle($legend, 20, $yActual - 3, 50 + 3, $yActual + $Blocheight, $this->pcouleurAlfa($Graf, 55)[$k + 1]);
+        imagefilledrectangle($legend, 20 + 1, $yActual, 50, $yActual + $Blocheight - 1, $this->pcouleur($Graf)[$k + 1]);
+      }
+
+      if ($this->type == 'pie') {
+        imagefilledarc($legend, 5 + $Blocheight - 1, 5 + $yActual - 1, 50 + 10, 50 + 10, 0, (360 / 6), $Couleur['ecriture'], IMG_ARC_PIE);
+        imagefilledarc($legend, 5 + $Blocheight + 3, 5 + $yActual, 50, 50, 0, (360 / 6), $this->pcouleurAlfa($Graf, 55)[$k + 1], IMG_ARC_PIE);
+        imagefilledarc($legend, 5 + $Blocheight + 1, 5 + $yActual, 50 - 2, 50 - 2, 0, (360 / 6), $this->pcouleur($Graf)[$k + 1], IMG_ARC_PIE);
+      }
+
+      if ($this->legendVal) {
+        if ($this->autodVal) {
+          $legendvaleur = $datalab[$k] . ' ' . round($value[$k], 2) . '%';
+        } else {
+          $legendvaleur = $datalab[$k] . ' ' . round($value[$k], 2) . ' ';
+        }
+      } else {
+        $legendvaleur = $datalab[$k];
+      }
+
+      $LegendFontSize = 13;
+      $LegendGoodSize = false;
+
+      // Tant que la legende ne rentre pas
+      while (!$LegendGoodSize) {
         // Calcul de la largeur du titre
         $LegendBox = imagettfbbox($LegendFontSize, 0, $Font['fontttf'], $legendvaleur);
         $LegendWidth = $LegendBox[0] + $LegendBox[2];
         $LegendHeight = $LegendBox[1] + $LegendBox[3];
-        
+
         // Si le titre rentre dans la boite
-        if($LegendWidth<=($widthlegend - 60)) {
-            $LegendGoodSize = true;
+        if ($LegendWidth <= ($widthlegend - 60)) {
+          $LegendGoodSize = true;
         } else {
-            // Sinon on reduit la taille de la police
-            $LegendFontSize--;
+          // Sinon on reduit la taille de la police
+          $LegendFontSize--;
         }
+      }
+
+      imagettftext($legend, $LegendFontSize, 0, 60, $yActual + $Blocheight, $Couleur['ecriture'], $Font['fontttf'], $legendvaleur);
+
+      $yActual += $Blocheight + $Blocsaut;
     }
- 
-  imagettftext($legend, $LegendFontSize, 0, 60, $yActual + $Blocheight, $Couleur['ecriture'], $Font['fontttf'],$legendvaleur);
-    
-    $yActual += $Blocheight + $Blocsaut;
-}
 
-// Creation de l'image Graphique + Legende
-$GrafTotal = imagecreatetruecolor($width + $widthlegend, $height);
-// Copie de l'image Graphique temporaire
-imagecopyresized($GrafTotal, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
-// Libération de la mémoire
-imagedestroy($Graf);
-// Copie de l'image Legende temporaire
-imagecopyresized($GrafTotal, $legend, $width, 0, 0, 0, $widthlegend,$height, $widthlegend, $height);
-// Libération de la mémoire
-imagedestroy($legend);
+    // Creation de l'image Graphique + Legende
+    $GrafTotal = imagecreatetruecolor($width + $widthlegend, $height);
+    // Copie de l'image Graphique temporaire
+    imagecopyresized($GrafTotal, $Graf, 0,  0, 0, 0, $width, $height, $width, $height);
+    // Libération de la mémoire
+    imagedestroy($Graf);
+    // Copie de l'image Legende temporaire
+    imagecopyresized($GrafTotal, $legend, $width, 0, 0, 0, $widthlegend, $height, $widthlegend, $height);
+    // Libération de la mémoire
+    imagedestroy($legend);
 
-  return $GrafTotal ;
-}
-
-private function couleurs(string $couleur,$Graf): array
-{
-  list($r, $g, $b) = explode(".", $couleur);
-  $r=(int)$r;
-  $g=(int)$g;
-  $b=(int)$b;
-
-  if($r>255) {
-    $r=fmod((int)$r,255);
+    return $GrafTotal;
   }
 
-  if($g>255) {
-    $g=fmod((int)$g,255);
-  }
-  
-  if($b>255) {
-    $b=fmod((int)$b,255);
-  }
-  $r2=$r+55;
-  if($r2>255) {
-    $r2=fmod($r2,255);
-  }
+  private function couleurs(string $couleur, $Graf): array
+  {
+    list($r, $g, $b) = explode(".", $couleur);
+    $r = (int)$r;
+    $g = (int)$g;
+    $b = (int)$b;
 
-  $g2=$g+55; 
-  if($g2>255) {
-    $g2=fmod($g2,255);
-  }
-  $b2=$b+55; 
-  if($b2>255) {
-    $b2=fmod($b2,255);
-  }
-
-  $r3=$r+255; 
-  if($r3>255) {
-    $r3=fmod($r3,255);
-    if($r3==$r){
-      $r3=fmod($r3+100,255);
+    if ($r > 255) {
+      $r = fmod((int)$r, 255);
     }
-  }
-  $g3=$g+255; 
-  if($g3>255) {
-    $g3=fmod($g3,255);
-    if($g3==$g){
-      $g3=fmod($g3+100,255);
+
+    if ($g > 255) {
+      $g = fmod((int)$g, 255);
     }
-  }
-  $b3=$b+255; 
-  if($b3>255) {
-    $b3=fmod($b3,255);
-    if($b3==$b){
-      $b3=fmod($b3+100,255);
-      
+
+    if ($b > 255) {
+      $b = fmod((int)$b, 255);
     }
+    $r2 = $r + 55;
+    if ($r2 > 255) {
+      $r2 = fmod($r2, 255);
+    }
+
+    $g2 = $g + 55;
+    if ($g2 > 255) {
+      $g2 = fmod($g2, 255);
+    }
+    $b2 = $b + 55;
+    if ($b2 > 255) {
+      $b2 = fmod($b2, 255);
+    }
+
+    $r3 = $r + 255;
+    if ($r3 > 255) {
+      $r3 = fmod($r3, 255);
+      if ($r3 == $r) {
+        $r3 = fmod($r3 + 100, 255);
+      }
+    }
+    $g3 = $g + 255;
+    if ($g3 > 255) {
+      $g3 = fmod($g3, 255);
+      if ($g3 == $g) {
+        $g3 = fmod($g3 + 100, 255);
+      }
+    }
+    $b3 = $b + 255;
+    if ($b3 > 255) {
+      $b3 = fmod($b3, 255);
+      if ($b3 == $b) {
+        $b3 = fmod($b3 + 100, 255);
+      }
+    }
+    $this->fond = '' . $r3 . '.' . $g . '.' . $b . '';
+    $Couleur['ecriture'] = imagecolorallocate($Graf, (int) $r, (int) $g, (int) $b);
+    $Couleur['ecriture-'] = imagecolorallocatealpha($Graf, (int) $r2, (int) $g2, (int) $b2, 55);
+    $Couleur['fond'] = imagecolorallocate($Graf, (int) $r3, (int) $g3, (int) $b3);
+
+    return $Couleur;
   }
-  $this->fond=''.$r3.'.'.$g.'.'.$b.'';
-  $Couleur['ecriture'] = imagecolorallocate($Graf,(int) $r,(int) $g,(int) $b);
-  $Couleur['ecriture-'] = imagecolorallocatealpha($Graf,(int) $r2,(int) $g2,(int) $b2,55);
-  $Couleur['fond'] = imagecolorallocate($Graf, (int) $r3,(int) $g3,(int) $b3);
 
-  return $Couleur;
-}
+  public function Rz()
+  {
+    $this->autodVal = true;
+    $this->sav = false;
+    $this->legend = true;
+    $this->legendVal = true;
+    return $this;
+  }
 
-public function Rz()
-{
-$this->autodVal=true;
-$this->sav=false;
-$this->legend=true;
-$this->legendVal=true;
-return $this;
-}
+  public function Graph(string $type, array $data, string $title)
+  {
 
-public function Graph(string $type,array $data,string $title) 
-{
-  
     $this->setType($type);
-    $this->title=$title;
-   
-    $datalab=$this->label($data);
-    $datanum=$this->valeur($data);
+    $this->title = $title;
 
-   $somme = $this->somme($datanum);
+    $datalab = $this->label($data);
+    $datanum = $this->valeur($data);
 
-   if($this->height<=($this->width/1.5)){$this->height=(intval(($this->height)*1.5));}
+    $somme = $this->somme($datanum);
 
-  $width=$this->width;
+    if ($this->height <= ($this->width / 1.5)) {
+      $this->height = (intval(($this->height) * 1.5));
+    }
 
-  $height=$this->height; 
- 
-  $chemin=$this->chemin; 
- 
- 
-   $title=$this->title;
-   $title = str_replace(' ', '-', $title);
-   $image= nl2br(htmlspecialchars(trim($title)));
+    $width = $this->width;
+
+    $height = $this->height;
+
+    $chemin = $this->chemin;
+
+
+    $title = $this->title;
+    $title = str_replace(' ', '-', $title);
+    $image = nl2br(htmlspecialchars(trim($title)));
     // Si $autoVal est vrai, calcul du pourcentage automatique
-    if($this->autodVal==true) {
+    if ($this->autodVal == true) {
 
-      $value=$this->pourcent($datanum);
-
+      $value = $this->pourcent($datanum);
     } else {
-   
-      $value=$datanum;
 
+      $value = $datanum;
     }
 
 
-    if (!isset($this->sav)){
-     
-     // $this->sav=1;
-      if (!is_dir($chemin)) 
-      {
+    if (!isset($this->sav)) {
+
+      // $this->sav=1;
+      if (!is_dir($chemin)) {
         mkdir($chemin, 0777, true);
       }
     }
-     // Creation de la ressource
+    // Creation de la ressource
     $Graf = imagecreatetruecolor($width, $height);
     imagealphablending($Graf, true);
-    ImagesaveAlpha($Graf, true); 
-// Definition des polices
+    ImagesaveAlpha($Graf, true);
+    // Definition des polices
     // Dans le cas présent les fichier TTF sont situé dans un dossier fonts
     // pour le title
     $Font['fontotf'] = realpath('fonts/Arial.otf');
     // pour legend
     $Font['fontttf'] = realpath('fonts/garamond.ttf');
 
-  
-    // Definition des couleurs principales
-    $Couleur=$this->couleurs($this->couleur,$Graf);
-    imagefill($Graf, 0, 0, $Couleur['ecriture']);
-  
-    
-  
-     
-          switch ($this->type)
-        {
-          case "pie":
-            $Grafi=$this->pie($Graf,$value,$Couleur); 
-          break;
-          case "col":
-            $Grafi=$this->col($Graf,$value,$Couleur); 
-          break;
-          case "bar":
-            $Grafi=$this->bar($Graf,$value,$Couleur); 
-          break;
 
-          default:
-          $Grafi=$this->col($Graf,$value,$Couleur); 
-           break;
-        }
-      
+    // Definition des couleurs principales
+    $Couleur = $this->couleurs($this->couleur, $Graf);
+    imagefill($Graf, 0, 0, $Couleur['ecriture']);
+
+
+
+
+    switch ($this->type) {
+      case "pie":
+        $Grafi = $this->pie($Graf, $value, $Couleur);
+        break;
+      case "col":
+        $Grafi = $this->col($Graf, $value, $Couleur);
+        break;
+      case "bar":
+        $Grafi = $this->bar($Graf, $value, $Couleur);
+        break;
+
+      default:
+        $Grafi = $this->col($Graf, $value, $Couleur);
+        break;
+    }
+
     // Si on choisi d'afficher la legende
 
-    
-    if($this->legend) {
 
-       
-        $Grafi=$this->lengend($datalab,$value, $Graf,$Couleur,$Font); 
-        ImageSaveAlpha($Grafi, true);   
-    
-      
-    } 
-
-  if ($this->sav==true) {
-         
-          // Envoi de l'image au navigateur
-          imagepng($Grafi, $chemin.'/'.$image.'.png');
-          // Libération de la mémoire
-          imagedestroy($Grafi);
-         print '<img src="'.$chemin.'/'.$image.'.png" alt="'.$image.'" />';
-         
-           } else {
-            ob_start();
-              // Envoi de l'image au navigateur
-          imagepng($Grafi);
-          printf('<img src="data:image/png;base64,%s"/>',  base64_encode(ob_get_clean()));
-          // Libération de la mémoire
-          imagedestroy($Grafi); 
-           }
-        if(!isset($Graf)){
-          imagedestroy($Graf);
-         }  
-     
-}
+    if ($this->legend) {
 
 
- 
+      $Grafi = $this->lengend($datalab, $value, $Graf, $Couleur, $Font);
+      ImageSaveAlpha($Grafi, true);
+    }
 
+    if ($this->sav == true) {
 
+      // Envoi de l'image au navigateur
+      imagepng($Grafi, $chemin . '/' . $image . '.png');
+      // Libération de la mémoire
+      imagedestroy($Grafi);
+      print '<img src="' . $chemin . '/' . $image . '.png" alt="' . $image . '" />';
+    } else {
+      ob_start();
+      // Envoi de l'image au navigateur
+      imagepng($Grafi);
+      printf('<img src="data:image/png;base64,%s"/>',  base64_encode(ob_get_clean()));
+      // Libération de la mémoire
+      imagedestroy($Grafi);
+    }
+    if (!isset($Graf)) {
+      imagedestroy($Graf);
+    }
+  }
 }
