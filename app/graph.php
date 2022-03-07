@@ -933,7 +933,14 @@ class Graph
     // pour legend
     $Font['fontttf'] = realpath('fonts/garamond.ttf');
 
-
+    if (!file_exists($Font['fontotf'])) {
+      print 'vérifier présence de <"fonts/Arial.otf"> ';
+      exit;
+    }
+    if (!file_exists($Font['fontttf'])) {
+      print 'vérifier présence de <"fonts/garamond.ttf"> ';
+      exit;
+    }
     // Definition des couleurs principales
     $Couleur = $this->couleurs($this->couleur, $Graf);
     imagefill($Graf, 0, 0, $Couleur['ecriture']);
