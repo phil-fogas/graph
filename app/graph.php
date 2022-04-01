@@ -998,7 +998,6 @@ class Graph
 
     $chemin = $this->chemin;
 
-
     $title = $this->title;
     $title = str_replace(' ', '-', $title);
     $image = nl2br(htmlspecialchars(trim($title)));
@@ -1010,7 +1009,6 @@ class Graph
 
       $value = $datanum;
     }
-
 
     if (!isset($this->sav)) {
 
@@ -1042,9 +1040,6 @@ class Graph
     $Couleur = $this->couleurs($this->couleur, $Graf);
     imagefill($Graf, 0, 0, $Couleur['ecriture']);
 
-
-
-
     switch ($this->type) {
       case "pie":
         $Grafi = $this->pie($Graf, $value, $Couleur);
@@ -1063,9 +1058,7 @@ class Graph
 
     // Si on choisi d'afficher la legende
 
-
     if ($this->legend) {
-
 
       $Grafi = $this->lengend($datalab, $value, $Graf, $Couleur, $Font);
       ImageSaveAlpha($Grafi, true);
@@ -1090,4 +1083,6 @@ class Graph
       imagedestroy($Graf);
     }
   }
+
+
 }
