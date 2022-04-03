@@ -6,7 +6,7 @@
 <p>
 peut etre utilise sans option, ou personnaliser
 </p>
-  <h3>paramentre obligatoire</h3>
+  <h3>paramètre obligatoire</h3>
   <ul>
    <li>"col" pour graphique en colonne</li>
    <li>"pie" pour graphique en cammenbert</li>
@@ -16,11 +16,12 @@ peut etre utilise sans option, ou personnaliser
   $data = ['libele1' => valeur1 , 'libele2' => 'valeur2' ];
   <p>
   <ul> Option
-   <li>with</li>
+   <li>with : pour la taille</li>
    <li>setAutodVal : (bool) pour convertir les valeurs en pourcentages</li>
    <li>setLegend : (bool) pour afficher legend sur coter</li>
    <li>setCouleur : (rgb) pour couleur ecriture</li>
    <li>sav : (bool) pour sauvegarder l'image generer dans dossier "graph" ou visualissation en temps reel</li>
+	  <li>et d'autre ....</li>
   </ul>
   </p>
  <h4>exemples </h4>
