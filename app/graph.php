@@ -9,11 +9,6 @@ class Graph
   /**
    * @var string
    */
-  /**
-   * type
-   *
-   * @var mixed
-   */
   protected $type;
 
   /**
@@ -35,7 +30,6 @@ class Graph
    * @var int
    */
   protected $widthLegend = 200;
-
 
   /**
    * @var bool
@@ -80,6 +74,11 @@ class Graph
    * @var bool
    */
   protected $sav = false;
+
+  /**
+   * @var string
+   */
+  protected $nime = 'webp';
 
   /**
    * Get the value of marge
@@ -155,12 +154,12 @@ class Graph
     return $this->width;
   }
 
-
   /**
-   * setWidth
+   * Set the value of width
    *
-   * @param  mixed $width
-   * @return void
+   * @param  int  $width
+   *
+   * @return  self
    */
   public function setWidth(int $width)
   {
@@ -264,6 +263,34 @@ class Graph
     return $this;
   }
 
+    /**
+   * Get the value of nime
+   *
+   * @return  string
+   */
+  public function getNime()
+  {
+    return $this->nime;
+  }
+
+  /**
+   * Set the value of nime
+   *
+   * @param  string  $nime
+   *
+   * @return  self
+   */
+  public function setNime(string $nime)
+  {
+    $typ = ['png', 'webp', 'jpg','gif'];
+
+    if (!in_array($nime, $typ)) {
+      $nime = 'webp';
+    }
+    $this->nime = $nime;
+
+    return $this;
+  }
   /**
    * Get the value of margeX
    *
@@ -318,11 +345,10 @@ class Graph
     return $this;
   }
 
-
   /**
-   * getWidthLegend
+   * Get the value of widthLegend
    *
-   * @return void
+   * @return  int
    */
   public function getWidthLegend()
   {
@@ -421,12 +447,6 @@ class Graph
   {
   }
 
-  /**
-   * somme
-   *
-   * @param  mixed $data
-   * @return float
-   */
   private function somme(array $data): float
   {
     $somme = 0;
@@ -437,12 +457,6 @@ class Graph
     return $somme;
   }
 
-  /**
-   * valeur
-   *
-   * @param  mixed $data
-   * @return array
-   */
   private function valeur(array $data): array
   {
     foreach ($data as $id => $k) {
@@ -463,12 +477,6 @@ class Graph
     return $datanum;
   }
 
-  /**
-   * label
-   *
-   * @param  mixed $data
-   * @return array
-   */
   private function label(array $data): array
   {
 
@@ -483,12 +491,6 @@ class Graph
     return $datalab;
   }
 
-  /**
-   * pourcent
-   *
-   * @param  mixed $data
-   * @return array
-   */
   private function pourcent(array $data): array
   {
     $somme = $this->somme($data);
@@ -501,12 +503,6 @@ class Graph
     return $value;
   }
 
-  /**
-   * pcouleur
-   *
-   * @param  mixed $Graf
-   * @return array
-   */
   private function pcouleur($Graf): array
   {
     $Color['Red'] = array(170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238);
@@ -528,13 +524,6 @@ class Graph
     return $Couleur;
   }
 
-  /**
-   * pcouleurAlfa
-   *
-   * @param  mixed $Graf
-   * @param  mixed $t
-   * @return array
-   */
   private function pcouleurAlfa($Graf, int $t = 55): array
   {
     if ($t >= 127) {
@@ -560,14 +549,6 @@ class Graph
     return $Couleur;
   }
 
-  /**
-   * pie
-   *
-   * @param  mixed $Graf
-   * @param  mixed $value
-   * @param  mixed $Couleur
-   * @return void
-   */
   private function pie($Graf, $value, $Couleur)
   {
     $d = 1;
@@ -611,14 +592,6 @@ class Graph
     return $Grafi;
   }
 
-  /**
-   * bar
-   *
-   * @param  mixed $Graf
-   * @param  mixed $value
-   * @param  mixed $Couleur
-   * @return void
-   */
   private function bar($Graf, $value, $Couleur)
   {
     // Fond de l'image
@@ -679,14 +652,6 @@ class Graph
     return $Grafi;
   }
 
-  /**
-   * col
-   *
-   * @param  mixed $Graf
-   * @param  mixed $value
-   * @param  mixed $Couleur
-   * @return void
-   */
   private function col($Graf, $value, $Couleur)
   {
 
@@ -750,16 +715,6 @@ class Graph
     return $Grafi;
   }
 
-  /**
-   * lengend
-   *
-   * @param  mixed $datalab
-   * @param  mixed $value
-   * @param  mixed $Graf
-   * @param  mixed $Couleur
-   * @param  mixed $Font
-   * @return void
-   */
   private function lengend(array $datalab, array $value, $Graf, $Couleur, $Font)
   {
     // Creation de la ressource
@@ -887,13 +842,6 @@ class Graph
     return $GrafTotal;
   }
 
-  /**
-   * couleurs
-   *
-   * @param  mixed $couleur
-   * @param  mixed $Graf
-   * @return array
-   */
   private function couleurs(string $couleur, $Graf): array
   {
     list($r, $g, $b) = explode(".", $couleur);
@@ -955,11 +903,6 @@ class Graph
     return $Couleur;
   }
 
-  /**
-   * Rz
-   *
-   * @return void
-   */
   public function Rz()
   {
     $this->autodVal = true;
@@ -969,14 +912,46 @@ class Graph
     return $this;
   }
 
-  /**
-   * Graph
-   *
-   * @param  mixed $type
-   * @param  mixed $data
-   * @param  mixed $title
-   * @return void
-   */
+  private function CreatImage($Grafi,$image)
+  {
+    switch ($this->nime) {
+      case 'jpg':
+      case 'jpeg':// Pour les jpg et jpeg
+        if($this->sav == true){
+          imagejpeg($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
+        }else{
+          imagejpeg($Grafi); 
+        }
+        break;
+
+      case 'png':// Pour les png
+        if($this->sav == true){
+          imagepng($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
+        }else{
+          imagepng($Grafi); 
+        }
+        break;
+
+      case 'gif':// Pour les gif
+        if($this->sav == true){
+          imagegif($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
+        }else{
+          imagegif($Grafi); 
+        }
+        break;
+      case 'webp':// Pour les webp
+        if($this->sav == true){
+          imagewebp($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
+        }else{
+          imagewebp($Grafi); 
+        }
+                
+        break;
+    }
+    // Libération de la mémoire
+    imagedestroy($Grafi);
+  }
+
   public function Graph(string $type, array $data, string $title)
   {
 
@@ -997,6 +972,7 @@ class Graph
     $height = $this->height;
 
     $chemin = $this->chemin;
+    $nime=$this->nime;
 
     $title = $this->title;
     $title = str_replace(' ', '-', $title);
@@ -1009,6 +985,7 @@ class Graph
 
       $value = $datanum;
     }
+
 
     if (!isset($this->sav)) {
 
@@ -1036,9 +1013,11 @@ class Graph
       print 'vérifier présence de <"fonts/garamond.ttf"> ';
       exit;
     }
+
     // Definition des couleurs principales
     $Couleur = $this->couleurs($this->couleur, $Graf);
     imagefill($Graf, 0, 0, $Couleur['ecriture']);
+
 
     switch ($this->type) {
       case "pie":
@@ -1050,13 +1029,13 @@ class Graph
       case "bar":
         $Grafi = $this->bar($Graf, $value, $Couleur);
         break;
-
       default:
         $Grafi = $this->col($Graf, $value, $Couleur);
         break;
     }
 
     // Si on choisi d'afficher la legende
+
 
     if ($this->legend) {
 
@@ -1065,24 +1044,25 @@ class Graph
     }
 
     if ($this->sav == true) {
-
+      
       // Envoi de l'image au navigateur
-      imagepng($Grafi, $chemin . '/' . $image . '.png');
-      // Libération de la mémoire
-      imagedestroy($Grafi);
-      print '<img src="' . $chemin . '/' . $image . '.png" alt="' . $image . '" />';
+      $this->CreatImage($Grafi,$image);
+  
+      print '<picture><img 
+      srcset="' . $this->chemin . '/' . $image . '.'.$this->nime.'" type="image/'.$this->nime.'"
+      src="' . $this->chemin . '/' . $image . '.'.$this->nime.'" alt="' . $image . '" /></picture>';
     } else {
       ob_start();
       // Envoi de l'image au navigateur
-      imagepng($Grafi);
-      printf('<img src="data:image/png;base64,%s"/>',  base64_encode(ob_get_clean()));
-      // Libération de la mémoire
-      imagedestroy($Grafi);
+    
+        $this->CreatImage($Grafi,$image);
+        $img=base64_encode(ob_get_clean());
+      printf('<picture><img src="data:image/%s;base64,%s"/><picture>',$this->nime, $img );
+      
+     
     }
     if (!isset($Graf)) {
       imagedestroy($Graf);
     }
   }
-
-
 }
