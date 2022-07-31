@@ -65,6 +65,7 @@ class Graph
    * @var int
    */
   protected $margeX = 20;
+  
   /**
    * @var int
    */
