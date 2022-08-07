@@ -12,6 +12,7 @@ peut etre utilise sans option, ou personnaliser
    <li>"pie" pour graphique en cammenbert</li>
    <li>"bar" pour graphique en bar horizontale</li>
   </ul>
+
   pour les données un array avec le libelée et la valeur
   $data = ['libele1' => valeur1 , 'libele2' => 'valeur2' ];
   <p>
@@ -21,7 +22,8 @@ peut etre utilise sans option, ou personnaliser
    <li>setLegend : (bool) pour afficher legend sur coter</li>
    <li>setCouleur : (rgb) pour couleur ecriture</li>
    <li>sav : (bool) pour sauvegarder l'image generer dans dossier "graph" ou visualissation en temps reel</li>
-	  <li>et d'autre ....</li>
+   <li>setOrdre: modifier l'ordre d'affichage du tableau pour, null ordre non mofifier , "c" ordre coissant , "d" ordre décroissant</li>
+   <li>et d'autre ....</li>
   </ul>
   </p>
  <h4>exemples </h4>

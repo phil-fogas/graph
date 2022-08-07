@@ -54,6 +54,11 @@ class Graph
   /**
    * @var string
    */
+  protected $ordre;
+
+  /**
+   * @var string
+   */
   protected $couleur = '0.0.0';
 
   /**
@@ -65,7 +70,6 @@ class Graph
    * @var int
    */
   protected $margeX = 20;
-  
   /**
    * @var int
    */
@@ -106,6 +110,36 @@ class Graph
   }
 
   /**
+   * Get the value of ordre
+   *
+   * @return  string
+   */
+  public function getOrdre()
+  {
+    return $this->ordre;
+  }
+
+  /**
+   * Set the value of ordre
+   *
+   * @param  string  $ordre
+   *
+   * @return  self
+   */
+  public function setOrdre(string $ordre)
+  {
+    if (!empty($ordre)) {
+      if ($ordre == "c" || $ordre == "d") {
+        $this->ordre = $ordre;
+      } else {
+        $this->ordre = null;
+      }
+    }
+
+
+    return $this;
+  }
+  /**
    * Get the value of legend
    * @return bool
    */
@@ -142,6 +176,26 @@ class Graph
   public function setSav(bool $sav)
   {
     $this->sav = $sav;
+
+    return $this;
+  }
+  /**
+   * Get the value of Title
+   * @return bool
+   */
+  public function getTitle()
+  {
+    return $this->title;
+  }
+
+  /**
+   * Set the value of Title
+   *@param  string  $Title
+   * @return  self
+   */
+  public function setTitle(bool $title)
+  {
+    $this->title = $title;
 
     return $this;
   }
@@ -264,7 +318,7 @@ class Graph
     return $this;
   }
 
-    /**
+  /**
    * Get the value of nime
    *
    * @return  string
@@ -283,7 +337,7 @@ class Graph
    */
   public function setNime(string $nime)
   {
-    $typ = ['png', 'webp', 'jpg','gif'];
+    $typ = ['png', 'webp', 'jpg', 'gif'];
 
     if (!in_array($nime, $typ)) {
       $nime = 'webp';
@@ -913,40 +967,40 @@ class Graph
     return $this;
   }
 
-  private function CreatImage($Grafi,$image)
+  private function CreatImage($Grafi, $image)
   {
     switch ($this->nime) {
       case 'jpg':
-      case 'jpeg':// Pour les jpg et jpeg
-        if($this->sav == true){
-          imagejpeg($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
-        }else{
-          imagejpeg($Grafi); 
+      case 'jpeg': // Pour les jpg et jpeg
+        if ($this->sav == true) {
+          imagejpeg($Grafi, $this->chemin . '/' . $image . '.' . $this->nime);
+        } else {
+          imagejpeg($Grafi);
         }
         break;
 
-      case 'png':// Pour les png
-        if($this->sav == true){
-          imagepng($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
-        }else{
-          imagepng($Grafi); 
+      case 'png': // Pour les png
+        if ($this->sav == true) {
+          imagepng($Grafi, $this->chemin . '/' . $image . '.' . $this->nime);
+        } else {
+          imagepng($Grafi);
         }
         break;
 
-      case 'gif':// Pour les gif
-        if($this->sav == true){
-          imagegif($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
-        }else{
-          imagegif($Grafi); 
+      case 'gif': // Pour les gif
+        if ($this->sav == true) {
+          imagegif($Grafi, $this->chemin . '/' . $image . '.' . $this->nime);
+        } else {
+          imagegif($Grafi);
         }
         break;
-      case 'webp':// Pour les webp
-        if($this->sav == true){
-          imagewebp($Grafi, $this->chemin . '/' . $image . '.'.$this->nime);
-        }else{
-          imagewebp($Grafi); 
+      case 'webp': // Pour les webp
+        if ($this->sav == true) {
+          imagewebp($Grafi, $this->chemin . '/' . $image . '.' . $this->nime);
+        } else {
+          imagewebp($Grafi);
         }
-                
+
         break;
     }
     // Libération de la mémoire
@@ -957,7 +1011,21 @@ class Graph
   {
 
     $this->setType($type);
-    $this->title = $title;
+    if (!empty($title)) {
+      $this->title = $title;
+    } else {
+      $this->title = '';
+    }
+
+    if (!empty($this->ordre)) {
+      if ($this->ordre == "c") {
+        asort($data);
+      }
+      if ($this->ordre == "d") {
+        arsort($data);
+      }
+    }
+
 
     $datalab = $this->label($data);
     $datanum = $this->valeur($data);
@@ -973,7 +1041,7 @@ class Graph
     $height = $this->height;
 
     $chemin = $this->chemin;
-    $nime=$this->nime;
+    $nime = $this->nime;
 
     $title = $this->title;
     $title = str_replace(' ', '-', $title);
@@ -1045,22 +1113,20 @@ class Graph
     }
 
     if ($this->sav == true) {
-      
+
       // Envoi de l'image au navigateur
-      $this->CreatImage($Grafi,$image);
-  
+      $this->CreatImage($Grafi, $image);
+
       print '<picture><img 
-      srcset="' . $this->chemin . '/' . $image . '.'.$this->nime.'" type="image/'.$this->nime.'"
-      src="' . $this->chemin . '/' . $image . '.'.$this->nime.'" alt="' . $image . '" /></picture>';
+      srcset="' . $this->chemin . '/' . $image . '.' . $this->nime . '" type="image/' . $this->nime . '"
+      src="' . $this->chemin . '/' . $image . '.' . $this->nime . '" alt="' . $image . '" /></picture>';
     } else {
       ob_start();
       // Envoi de l'image au navigateur
-    
-        $this->CreatImage($Grafi,$image);
-        $img=base64_encode(ob_get_clean());
-      printf('<picture><img src="data:image/%s;base64,%s"/><picture>',$this->nime, $img );
-      
-     
+
+      $this->CreatImage($Grafi, $image);
+      $img = base64_encode(ob_get_clean());
+      printf('<picture><img src="data:image/%s;base64,%s"/><picture>', $this->nime, $img);
     }
     if (!isset($Graf)) {
       imagedestroy($Graf);
