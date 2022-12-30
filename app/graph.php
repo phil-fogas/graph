@@ -535,6 +535,7 @@ class Graph
   private function label(array $data): array
   {
 
+    $datalab = [];
     foreach ($data as $id => $k) {
 
       if (!is_numeric($id)) {
@@ -548,6 +549,7 @@ class Graph
 
   private function pourcent(array $data): array
   {
+    $value = [];
     $somme = $this->somme($data);
 
     for ($p = 0; $p < count($data); $p++) {
@@ -560,11 +562,13 @@ class Graph
 
   private function pcouleur($Graf): array
   {
-    $Color['Red'] = array(170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238);
-    $Color['Green'] = array(120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146);
-    $Color['Blue'] = array(70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98);
-    list($r, $g, $b) = explode(".", $this->couleur);
-    list($fr, $fg, $fb) = explode(".", $this->fond);
+    $Color = [];
+    $Couleur = [];
+    $Color['Red'] = [170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238];
+    $Color['Green'] = [120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146];
+    $Color['Blue'] = [70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98];
+    [$r, $g, $b] = explode(".", $this->couleur);
+    [$fr, $fg, $fb] = explode(".", $this->fond);
     $t = 55;
     for ($c = 0; $c < count($Color['Red']); $c++) {
 
@@ -581,14 +585,16 @@ class Graph
 
   private function pcouleurAlfa($Graf, int $t = 55): array
   {
+    $Color = [];
+    $Couleur = [];
     if ($t >= 127) {
       $t = fmod($t, 127);
     }
-    $Color['Red'] = array(170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238);
-    $Color['Green'] = array(120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146);
-    $Color['Blue'] = array(70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98);
-    list($r, $g, $b) = explode(".", $this->couleur);
-    list($fr, $fg, $fb) = explode(".", $this->fond);
+    $Color['Red'] = [170, 202, 10, 0, 247, 161, 186, 14, 0, 254, 15, 124, 10, 52, 238];
+    $Color['Green'] = [120, 0, 0, 202, 186, 3, 121, 200, 254, 242, 125, 36, 102, 56, 146];
+    $Color['Blue'] = [70, 0, 202, 0, 0, 121, 0, 206, 215, 89, 110, 89, 18, 23, 98];
+    [$r, $g, $b] = explode(".", $this->couleur);
+    [$fr, $fg, $fb] = explode(".", $this->fond);
 
     for ($c = 0; $c < count($Color['Red']); $c++) {
 
@@ -624,7 +630,7 @@ class Graph
     $start = 0;
 
     $colorid = 0;
-    for ($v = 0; $v < count($value); $v++) {
+    for ($v = 0; $v < (is_countable($value) ? count($value) : 0); $v++) {
       if ($colorid == count($CPortion)) {
         $colorid = 0;
       } else {
@@ -667,7 +673,7 @@ class Graph
     // Dessin des portions
 
     $max = max($value);
-    $colonne = count($value);
+    $colonne = is_countable($value) ? count($value) : 0;
     $padcolumn = 10;
     $columnheight = ($height / 100) * (($d / $colonne) * 100);
     $padbottom = 30;
@@ -730,7 +736,7 @@ class Graph
 
     imagesetthickness($Graf, $d);
     $max = max($value);
-    $colonne = count($value);
+    $colonne = is_countable($value) ? count($value) : 0;
     $columnwidth = ($width / 100) * (($d / $colonne) * 100);
 
     $colorid = 0;
@@ -899,7 +905,8 @@ class Graph
 
   private function couleurs(string $couleur, $Graf): array
   {
-    list($r, $g, $b) = explode(".", $couleur);
+    $Couleur = [];
+    [$r, $g, $b] = explode(".", $couleur);
     $r = (int)$r;
     $g = (int)$g;
     $b = (int)$b;
@@ -1010,6 +1017,7 @@ class Graph
   public function Graph(string $type, array $data, string $title)
   {
 
+    $Font = [];
     $this->setType($type);
     if (!empty($title)) {
       $this->title = $title;
